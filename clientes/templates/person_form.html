@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD Create</title>
+</head>
+<body>
+<!--  <form action="{% url 'persons_new' %}" method="POST" enctype="multipart/form-data">-->
+  <form  method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+    <button type="submit">Salvar</button>
+  </form>
+</body>
+</html>
