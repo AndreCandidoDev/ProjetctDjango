@@ -1,15 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CRUD Create</title>
-</head>
-<body>
-<!--  <form action="{% url 'persons_new' %}" method="POST" enctype="multipart/form-data">-->
-  <form  method="POST" enctype="multipart/form-data">
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Cadastro de cliente {% endblock %}
+
+{% block main %}
+
+    <form  method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form }}
-    <button type="submit">Salvar</button>
-  </form>
-</body>
-</html>
+        {{ form|bootstrap }}
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Powered by Django 2.2</span>
+    </div>
+</footer>
+{% endblock %}

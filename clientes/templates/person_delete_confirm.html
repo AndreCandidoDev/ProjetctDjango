@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CRUD Delete</title>
-</head>
-<body>
-<!--  <h1>Deseja eliminar o registro abaixo ?</h1>-->
+{% extends 'base.html' %}
+
+{% block title %} Confirmação de remoção {% endblock %}
+
+{% block main %}
+
   <h1>Deseja deletar {{person.first_name}} ?</h1>
   <form  method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-<!--        {{ form }}-->
-    <button type="submit">Delete</button>
-</body>
-</html>
+    <button type="submit" class="btn btn-danger">Delete</button>
+  </form>
+
+{% endblock %}
+
+{% block footer %}
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Powered by Django 2.2</span>
+    </div>
+</footer>
+{% endblock %}
