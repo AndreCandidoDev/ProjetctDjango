@@ -8,6 +8,18 @@ def home(request):
     return render(request, 'home.html')
 
 
+def polices(request):
+    return render(request, 'polices.html')
+
+
+def services_term(request):
+    return render(request, 'services_terms.html')
+
+
+def exclusion(request):
+    return render(request, 'exclusion.html')
+
+
 def Logout(request):
     logout(request)
     return redirect('home')
