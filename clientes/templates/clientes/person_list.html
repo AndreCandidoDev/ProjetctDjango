@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Lista de clientes cadastrados</h1>
+    {% for person in object_list %}
+        <br>
+        <a href="{% url 'person_detail_cbv' person.id %}" >{{ person }} </a>
+    {% endfor %}
+    <br><br><br>
+    <h4>Warning: {{ warning_message }}</h4>
+    <br><br><br>
+    <h4>{{ message }}</h4>
+    <br><br><br>
+    <a href="{% url 'person_create_cbv' %}">Novo cliente</a>
+    <br><br>
+    <p>Access time: {{ footer_message }}</p>
+{% endblock %}

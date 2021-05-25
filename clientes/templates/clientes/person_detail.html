@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Informações cadastrais</h1>
+    <br>
+    <h3>Nome: {{ object.first_name }}</h3>
+    <h3>Sobrenome: {{ object.last_name }}</h3>
+    <h3>Idade: {{ object.age }}</h3>
+    <h3>Salario: {{ object.salary }}</h3>
+    <h3>Bio: {{ object.bio }}</h3>
+    <h3>Doc: {{ object.doc }}</h3>
+    <br><br>
+    <h2>Vendas</h2>
+    {% for vendas in vendas %}
+        <br><br>
+        <p>ID da venda: {{ vendas.id }}</p>
+        <p>Numero da venda: {{ vendas.numero }}</p>
+        <p>Valor da venda: {{ vendas.valor }}</p>
+        <ul>
+            {% for produto in vendas.produtos.all %}
+                <li>{{produto.id}} -- {{ produto.descricao }} -- {{ produto.preco }} </li>
+            {% endfor %}
+        </ul>
+
+    {% endfor %}
+    <br><br>
+    <h5>Hora do acesso: {{ now }}</h5>
+    <br><br><br>
+    <a href="{% url 'person_update_cbv' object.id %}">Atualizar cadastro</a>
+    <br><br>
+    <a href="{% url 'person_delete_cbv' object.id %}">Deletar cadastro</a>
+    <br><br>
+    <a href="{% url 'person_list_cbv' %}">Voltar</a>
+
+
+{% endblock %}

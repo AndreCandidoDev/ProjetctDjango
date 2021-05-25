@@ -27,23 +27,41 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
+
 ALLOWED_HOSTS = ['gestaoclientes-estudo-mairipa.herokuapp.com',
                  '127.0.0.1']
 
+# seta configuração de envio de email para administradores do sistema
+# ADMINS = [('admin_user_name', 'admin_user_email'), ('admin_user_name1', 'admin_user_email1'),...]
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+
     'bootstrapform',
     'clientes',
     'home',
+    'produtos',
+    'vendas',
+    'debug_toolbar',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'mymiddlewares.MetaData.MetaData',
 ]
 
 ROOT_URLCONF = 'gestao_clientes.urls'
@@ -73,6 +93,14 @@ TEMPLATES = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
 WSGI_APPLICATION = 'gestao_clientes.wsgi.application'
 
 
@@ -82,7 +110,6 @@ WSGI_APPLICATION = 'gestao_clientes.wsgi.application'
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 
 DATABASES = { 'default': config('DATABASE_URL', default=default_dburl, cast=dburl), }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -106,9 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -135,3 +162,11 @@ LOGIN_REDIRECT_URL = 'persons_list'
 STATICFILES_DIRS = [
     'static',
 ]
+
+# configurar para envio de emails
+# EMAIL_HOST = 'host address'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'your host user'
+# EMAIL_HOST_PASSWORD = 'your host password'
+# EMAIL_USE_TLS =False
+# SERVER_EMAIL = 'sistema@dominoempresa.com'

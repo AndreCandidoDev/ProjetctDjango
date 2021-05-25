@@ -1,8 +1,28 @@
 {% extends 'base.html' %}
-
-{% block title %} Gestão de clientes {% endblock %}
+{% load filters %}
+{% load my_tags %}
+{% block title %} Administração {% endblock %}
 
 {% block main %}
+<header>
+<nav class="navbar navbar-light bg-light">
+    <form class="form-inline">
+        <div class="form-group mx-sm-3 mb-2">
+            <label class="sr-only">Busca</label>
+            <input type="text" class="form-control" id="pesquisa" name="pesquisa" placeholder="Digite sua busca">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">Pesquisar</button>
+    </form>
+    {% if user.is_authenticated %}
+        <a href="{% url 'password_change' %}" class="btn btn-secondary">Mudar a senha</a>
+        <h3>{{ user.username }} <a href="{% url 'logout' %}" class="btn btn-secondary">Sair</a></h3>
+    {% endif %}
+</nav>
+</header>
+
+<!--FIXME: corrigir essa gambiarra do <br>-->
+    <br><br>
+<!--TODO: Melhorar o grid de forma que o mesmo fique visualmente melhor-->
     <div class="row">
         <div class="col">
             <h2> Listagem de clientes </h2>
@@ -10,27 +30,39 @@
                 {% for person in persons %}
                     <li class="list-group-item">
                         <a href="{% url 'persons_update' person.id %}"  class="btn btn-primary">
-                            {{ person.first_name }}</a>
+                            {{ person.nome_completo|title }}</a>
                         <a href="{% url 'persons_delete' person.id %}"><i class="bi bi-trash" style="float: right">
                         </i></a>
                     </li>
+                {% empty %}
+                <h4>(Não ha clientes cadastrados)</h4>
                 {% endfor %}
                 </ul>
             <br>
-            <a href="{% url 'persons_new' %}" class="btn btn-success">Novo cadastro</a>
-        </div>
-        <div class="col">
-            {% if user.is_authenticated %}
-                 <p>Ola {{ user.username }} <a href="{% url 'logout' %}" class="btn btn-secondary">Sair</a></p>
+            {% if persons %}
+                Number of clients: {{ persons|length }}
             {% endif %}
+            <br><br>
+            <a href="{% url 'persons_new' %}" class="btn btn-success">Novo cadastro</a>
+            {% if persons|length <= 4 and persons|length > 0%}
+                <br><br><br>
+                <h3>System: Continue cadastrando </h3>
+            {% elif persons|length > 4 %}
+                <br><br><br>
+            {% elif persons|length == 0 %}
+                <br><br><br>
+                <h3>System: Cade os clientes?? </h3>
+            {% endif %}
+            {% if zoeira %}
+                {{ message|my_filter }}
+            {% endif %}
+            <br>
+            {% current_time "%Y-%m-%d %I:%M %p" as the_time %}
+            <p> Hora do servidor: {{ the_time }}</p>
         </div>
     </div>
 {% endblock %}
 
 {% block footer %}
-<footer class="footer">
-    <div class="container">
-        <span class="text-muted">Powered by Django 2.2</span>
-    </div>
-</footer>
+{% include 'footer.html' %}
 {% endblock %}
