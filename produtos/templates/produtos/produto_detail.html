@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Informações cadastrais</h1>
+    <br>
+    <h3>Descrição do produto: {{ object.descricao }}</h3>
+    <h3>Preço: {{ object.preco }}</h3>
+    <br><br><br>
+    <a href="{% url 'produto_update' object.id %}">Atualizar cadastro</a>
+    <br><br>
+    <a href="{% url 'produto_delete' object.id %}">Deletar cadastro</a>
+    <br><br>
+    <a href="{% url 'produto_list' %}">Voltar</a>
+{% endblock %}

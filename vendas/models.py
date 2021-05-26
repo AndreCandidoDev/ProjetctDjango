@@ -9,9 +9,9 @@ from .managers import VendaManager
 
 class Vendas(models.Model):
     numero = models.CharField(max_length=7)
-    valor = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
-    desconto = models.DecimalField(max_digits=5, decimal_places=2, default=0)
-    impostos = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    valor = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    desconto = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    impostos = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     pessoa = models.ForeignKey(Person, null=True, blank=True, on_delete=models.PROTECT)
     nfe_emitida = models.BooleanField(default=False)
 
@@ -41,7 +41,7 @@ class ItemDoPedido(models.Model):
     venda = models.ForeignKey(Vendas, on_delete=models.CASCADE)
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
     quantidade = models.FloatField()
-    desconto = models.DecimalField(max_digits=5, decimal_places=2)
+    desconto = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
         return self.venda.numero + ' - ' + self.produto.descricao

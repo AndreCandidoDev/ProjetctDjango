@@ -15,6 +15,7 @@
     </form>
     {% if user.is_authenticated %}
         <a href="{% url 'password_change' %}" class="btn btn-secondary">Mudar a senha</a>
+        <a href="{% url 'person_list_cbv' %}" class="btn btn-secondary">Mudar exibição</a>
         <h3>{{ user.username }} <a href="{% url 'logout' %}" class="btn btn-secondary">Sair</a></h3>
     {% endif %}
 </nav>
@@ -61,8 +62,4 @@
             <p> Hora do servidor: {{ the_time }}</p>
         </div>
     </div>
-{% endblock %}
-
-{% block footer %}
-{% include 'footer.html' %}
 {% endblock %}

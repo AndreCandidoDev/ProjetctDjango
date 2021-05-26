@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h2>Listagem de produtos</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Preço</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+        <tbody>
+        {% for produto in object_list %}
+        <tr>
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td>{{ produto.preco }}</td>
+            <td><a href="{% url 'produto_update' produto.id %}">
+                <i class="bi bi-pencil"></i>
+            </a></td>
+            <td>
+                <a href="{% url 'produto_delete' produto.id %}">
+                    Excluir</a></td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'produto_create' %}">Novo produto</a>
+{% endblock %}

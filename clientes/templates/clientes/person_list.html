@@ -1,16 +1,33 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    <h1>Lista de clientes cadastrados</h1>
+    <h2>Listagem de clientes</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Sobrenome</th>
+          <th scope="col">Idade</th>
+          <th scope="col">Salario</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+        <tbody>
     {% for person in object_list %}
-        <br>
-        <a href="{% url 'person_detail_cbv' person.id %}" >{{ person }} </a>
+        <tr>
+            <td>{{ person.id }}</td>
+            <td>{{ person.first_name }}</td>
+            <td>{{ person.last_name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.salary }}</td>
+            <td><a href="{% url 'person_update_cbv' person.id %}" >
+                <i class="bi bi-pencil"></i></a></td>
+            <td><a href="{% url 'person_delete_cbv' person.id %}">Excluir</a></td>
+        </tr>
     {% endfor %}
-    <br><br><br>
-    <h4>Warning: {{ warning_message }}</h4>
-    <br><br><br>
-    <h4>{{ message }}</h4>
-    <br><br><br>
+        </tbody>
+    </table>
     <a href="{% url 'person_create_cbv' %}">Novo cliente</a>
     <br><br>
     <p>Access time: {{ footer_message }}</p>
