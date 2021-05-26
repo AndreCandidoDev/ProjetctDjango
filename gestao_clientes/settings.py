@@ -31,8 +31,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-ALLOWED_HOSTS = ['gestaoclientes-estudo-mairipa.herokuapp.com',
-                 '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # seta configuração de envio de email para administradores do sistema
 # ADMINS = [('admin_user_name', 'admin_user_email'), ('admin_user_name1', 'admin_user_email1'),...]
