@@ -5,6 +5,10 @@ To use it follow the steps:
 
 1. first activate your virtualenv on pycharm or create one on terminal: **python3 -m venv venv**
   - if you create do not forget to activate it: **source venv/bin/activate**
+  
+  - Attention: These commands are for **Linux**.
+  - For Windows use: **python3 -m venv venv** (same as Linux)
+  - To active it use: **venv/Scripts/activate**
 
 2. After this use the command: **pip install -r requirements-dev.txt** to install all project dependencies
 
