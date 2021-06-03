@@ -15,3 +15,5 @@ To use it follow the steps:
 3. Then use: **python manage.py createsuperuser** to use all the project features 
 
 4. To start the server use: **python manage.py runserver** 
+
+Sample: https://gestaoclientes-estudo-mairipa.herokuapp.com/
